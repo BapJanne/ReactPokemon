@@ -1,0 +1,25 @@
+.item {
+  margin: 10px;
+  padding: 10px;
+  background-color: #8a2b06;
+  color: white;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: normal;
+  margin: 10px;
+}
+
+@media (max-width: 796px) {
+  h3 {
+    font-size: 18px;
+    font-weight: normal;
+    margin: 5px;
+  }
+}

@@ -1,0 +1,40 @@
+.teamItem {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.pokeName {
+  font-size: 22px;
+  width: 50px;
+}
+
+.buttonRemove {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background-color: darkgrey;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 22px;
+  float: right;
+}
+
+.buttonRemove:hover,
+.buttonRemove:active {
+  background-color: gray;
+}
+
+@media (max-width: 796px) {
+  .pokeName {
+    font-size: 18px;
+    font-weight: normal;
+    margin: 5px;
+  }
+}
