@@ -19,11 +19,11 @@ const PokemonCard = (props) => {
 
   return (
     <li className={classes.item}>
-      <div>
+      <div className={classes.pokemonContainer}>
         <h3>{props.pokemonName}</h3>
         <img
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`}
-          alt="Pokemon front"
+          alt="Front of the Pokemon"
         />
       </div>
 

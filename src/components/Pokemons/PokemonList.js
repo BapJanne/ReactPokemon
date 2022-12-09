@@ -21,10 +21,6 @@ const PokemonList = () => {
         return { item, id: index + 1 };
       });
 
-      // console.log(addIdPokemon);
-
-      // console.log(result.data.results);
-
       setPokeList(addIdPokemon);
     };
     fetchData();
@@ -48,22 +44,26 @@ const PokemonList = () => {
   };
 
   const displayData = () => {
-    if (pokeList.length) {
+    if (pokeList) {
       if (userInput.length > 0) {
         const pokeListFilter = pokeList.filter((word) => {
           return word.item.toLowerCase().includes(userInput);
         });
 
-        const pokemonListSorted = pokeListFilter.map((pokemon) => {
-          return (
-            <PokemonCard
-              pokemonName={pokemon.item}
-              key={pokemon.id}
-              id={pokemon.id}
-            />
-          );
-        });
-        return pokemonListSorted;
+        if (pokeListFilter.length > 0) {
+          const pokemonListSorted = pokeListFilter.map((pokemon) => {
+            return (
+              <PokemonCard
+                pokemonName={pokemon.item}
+                key={pokemon.id}
+                id={pokemon.id}
+              />
+            );
+          });
+          return pokemonListSorted;
+        } else {
+          return <p>There is no Pokemon of this name.</p>;
+        }
       } else {
         const pokemonList = pokeList.map((pokemon) => {
           return (

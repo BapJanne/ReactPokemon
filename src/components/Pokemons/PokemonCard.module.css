@@ -10,6 +10,13 @@
   flex-direction: column;
 }
 
+.pokemonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 h3 {
   font-size: 22px;
   font-weight: normal;
