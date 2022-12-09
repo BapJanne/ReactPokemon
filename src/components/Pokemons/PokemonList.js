@@ -5,6 +5,7 @@ import classes from "./PokemonList.module.css";
 
 const PokemonList = () => {
   const [pokeList, setPokeList] = useState([]);
+  const [userInput, setUserInput] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,20 +17,80 @@ const PokemonList = () => {
         firstLetterCapital(res.name)
       );
 
-      setPokeList(resultSorted);
+      const addIdPokemon = resultSorted.map((item, index) => {
+        return { item, id: index + 1 };
+      });
+
+      // console.log(addIdPokemon);
+
+      // console.log(result.data.results);
+
+      setPokeList(addIdPokemon);
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setUserInput(userInput);
+    }, 400);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [userInput]);
 
   const firstLetterCapital = (pokeName) => {
     return pokeName.charAt(0).toUpperCase() + pokeName.slice(1);
   };
 
-  const pokemonList = pokeList.map((pokemon) => {
-    return <PokemonCard pokemonName={pokemon} key={pokemon} />;
-  });
+  const userInputHandler = (e) => {
+    setUserInput(e.target.value.toLowerCase());
+  };
 
-  return <ul className={classes.pokemonList}>{pokemonList}</ul>;
+  const displayData = () => {
+    if (pokeList.length) {
+      if (userInput.length > 0) {
+        const pokeListFilter = pokeList.filter((word) => {
+          return word.item.toLowerCase().includes(userInput);
+        });
+
+        const pokemonListSorted = pokeListFilter.map((pokemon) => {
+          return (
+            <PokemonCard
+              pokemonName={pokemon.item}
+              key={pokemon.id}
+              id={pokemon.id}
+            />
+          );
+        });
+        return pokemonListSorted;
+      } else {
+        const pokemonList = pokeList.map((pokemon) => {
+          return (
+            <PokemonCard
+              pokemonName={pokemon.item}
+              key={pokemon.id}
+              id={pokemon.id}
+            />
+          );
+        });
+        return pokemonList;
+      }
+    } else {
+      return <p>Loading...</p>;
+    }
+  };
+
+  return (
+    <main className={classes.pokeCard}>
+      <input
+        className={classes.pokeInput}
+        type="text"
+        onChange={userInputHandler}
+      />
+      <ul className={classes.pokemonList}>{displayData()}</ul>
+    </main>
+  );
 };
 
 export default PokemonList;

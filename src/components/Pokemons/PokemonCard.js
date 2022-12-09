@@ -19,7 +19,14 @@ const PokemonCard = (props) => {
 
   return (
     <li className={classes.item}>
-      <h3>{props.pokemonName}</h3>
+      <div>
+        <h3>{props.pokemonName}</h3>
+        <img
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`}
+          alt="Pokemon front"
+        />
+      </div>
+
       {ctx.items.includes(props.pokemonName) && (
         <PokemonButton onClick={removeToTeamHandler} type="remove">
           -
